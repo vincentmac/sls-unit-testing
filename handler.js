@@ -1,33 +1,34 @@
-'use strict';
+"use strict";
 
 module.exports.endpoint = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: getLocalGreeting(pickLocale()),
-    }),
-  };
+	const response = {
+		statusCode: 200,
+		body: JSON.stringify({
+			message: getLocalGreeting(pickLocale())
+		})
+	};
 
-  callback(null, response);
+	callback(null, response);
 };
 
 function getLocalGreeting(language) {
-  switch(language) {
-    case "en":
-      return "Hello!";
-    case "es":
-      return "¡Hola!";
-    case "ru":
-      return "Привет!";
-    default:
-      return "👋";
-  }
+	switch (language) {
+		case "en":
+			return "Hello!";
+		case "es":
+			return "¡Hola!";
+		case "fr":
+			return "Bonjour 👋";
+		case "ru":
+			return "Привет!";
+		default:
+			return "👋";
+	}
 }
 module.exports.getLocalGreeting = getLocalGreeting;
 
-
 function pickLocale() {
-  const languages = ["en", "es", "cn", "fr", "ru"];
+	const languages = ["en", "es", "cn", "fr", "ru"];
 	// We miss Python's random.choice
-  return languages [Math.floor(Math.random() * languages.length)];
+	return languages[Math.floor(Math.random() * languages.length)];
 }
